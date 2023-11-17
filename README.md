@@ -8,7 +8,7 @@
 
 
 
-## GPT calling
+## GPT Calling
 
 You can use the following script to reproduce GPT's performance on this task：
 ```python
@@ -39,13 +39,15 @@ You need to change parameter settings in `script/GPT/run.sh` :
 
 * openai_key: Your key.
 
+## CodeLlama-7b Fine-tuning
+Please refer to [CodeLlama-7b](script/codellama/README.md) for details.
 
 ## Tools
 
-### Get bm25 result
+### Get BM25 result
 
 Run `python script/tools/bm25.py` to generate BM25 results for the instructions and readme. Ensure to update the original dataset `path` and output `path` which includes the BM25 results.
 
-### Crawl readme files from github repository
+### Crawl README files from github repository
 
 Run `python script/tools/crawl.py` to fetch readme files from a specific GitHub repository. You'll need to modify the `url` within the code to retrieve the desired readme files.
