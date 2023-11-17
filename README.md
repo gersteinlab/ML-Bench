@@ -51,3 +51,16 @@ Run `python script/tools/bm25.py` to generate BM25 results for the instructions 
 ### Crawl README files from github repository
 
 Run `python script/tools/crawl.py` to fetch readme files from a specific GitHub repository. You'll need to modify the `url` within the code to retrieve the desired readme files.
+
+## Cite Us
+This project is inspired by some related projects. We would like to thank the authors for their contributions. If you find this project useful, please cite the following papers:
+
+```
+@article{liu2023mlbench,
+      title={ML-Bench: Large Language Models Leverage Open-source Libraries for Machine Learning Tasks}, 
+      author={Yuliang Liu and Xiangru Tang and Zefan Cai and Junjie Lu and Yichi Zhang and Yanjun Shao and Zexuan Deng and Helan Hu and Zengxian Yang and Kaikai An and Ruijun Huang and Shuzheng Si and Sheng Chen and Haozhe Zhao and Zhengliang Li and Liang Chen and Yiming Zong and Yan Wang and Tianyu Liu and Zhiwei Jiang and Baobao Chang and Yujia Qin and Wangchunshu Zhou and Yilun Zhao and Arman Cohan and Mark Gerstein},
+      year={2023},
+      journal={arXiv preprint arXiv:2311.09835},
+}
+```
+
