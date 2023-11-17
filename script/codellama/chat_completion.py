@@ -134,7 +134,6 @@ def main(
     model = load_model(model_name, quantization)
     if peft_model:
         model = load_peft_model(model, peft_model)
-    print(model.device)
 
     if use_fast_kernels:
         """
@@ -147,8 +146,6 @@ def main(
             model = BetterTransformer.transform(model)   
         except ImportError:
             print("Module 'optimum' not found. Please install 'optimum' it before proceeding.")
-    if enable_fsdp:
-        model = FSDP(model)
 
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     dialogs["input_ids"] = format_tokens(
