@@ -40,7 +40,7 @@ You need to change parameter settings in `script/GPT/run.sh` :
 
 ### get bm25 result
 
-Run `python script/tools/bm25.py` to generate BM25 results for the instructions and readme. Ensure to update the dataset path and include the BM25 result dataset.
+Run `python script/tools/bm25.py` to generate BM25 results for the instructions and readme. Ensure to update the original dataset `path` and output `path` which includes the BM25 results.
 
 ### crawl readme files from github repository
 
