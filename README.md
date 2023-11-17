@@ -34,3 +34,14 @@ You need to change parameter settings in `script/GPT/run.sh` :
 * n_turn: GPT returns the number of executable codes (5 times in the paper experiment).
 
 * openai_key: Your key.
+
+
+## tools
+
+### get bm25 result
+
+Run `python script/tools/bm25.py` to generate BM25 results for the instructions and readme. Ensure to update the dataset path and include the BM25 result dataset.
+
+### crawl readme files from github repository
+
+Run `python script/tools/crawl.py` to fetch readme files from a specific GitHub repository. You'll need to modify the `url` within the code to retrieve the desired readme files.
