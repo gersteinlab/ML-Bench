@@ -11,4 +11,4 @@ function:
       keywords:
         type: "string"
         description: "The keywords about the model used and the task I want to do extracted from the given sentence"
-    required: [" keywords"]
+    required: ["keywords"]
