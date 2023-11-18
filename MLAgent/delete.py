@@ -10,7 +10,7 @@ with open('test_quarter_v4.jsonl', 'r') as file_a:
             print(f"Error decoding JSON in file A: {line}")
 
 data_b = []
-with open('test_v4.8.jsonl', 'r') as file_b:
+with open('test_v4.jsonl', 'r') as file_b:
     for line in file_b:
         try:
             item = json.loads(line)
