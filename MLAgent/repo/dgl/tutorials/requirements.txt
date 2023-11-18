@@ -1,0 +1,9 @@
+networkx>=2.1
+torch
+numpy
+seaborn
+matplotlib
+pygraphviz
+graphviz
+pandas
+rdflib

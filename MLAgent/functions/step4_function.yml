@@ -1,0 +1,21 @@
+function_prompt: |
+  I will provide you with a github readme file and directory index, please determine if this information is enough to write the code for the task I gave you. Write the code directly if you can, give us the path to the py file you want from the repository index file if you need more information.Please make sure that the file path you return is in the repository index file!!!And return NO if you don't think all of this information will do the job.
+  repository_index_file:{}
+  readmefile:{}
+  task:{}
+function:
+  name: "Evaluation_readme"
+  description: "Code that uses given information to determine whether or not it can accomplish a given task."
+  parameters:
+    type: "object"
+    properties:
+      flag:
+        type: "string"
+        description: "Returns the judgment, 'FILE' if the task can be completed after reading a py file, 'CODE' if the task can be written directly and the code is returned in the 'code' argument, and 'No'if the task cannot be completed.eg:FILE.eg:CODE.eg:No"
+      file_path:
+        type: "string"
+        description: "The path to the file returned when the py file is read further.Please make sure that the file path you return is in the repository_index_file!!!eg:evaluate.py.eg:docs/conf.py.eg:lavis/datasets/datasets/imagefolder_dataset.py"
+      code:
+        type: "string"
+        description: "You can just write the code that is returned when the code is written."
+    required: ["flag","file_path","code"]

@@ -1,0 +1,19 @@
+function_prompt: |
+  I will provide you with a github readme file and code arguments please determine if this information is enough to write the code for the task. If you can, please write the code directly. If you can't, please print 'No'.
+  readmefile:{}
+  code_arguments:{}
+  task:{}
+  please answer in 
+function:
+  name: "write_code"
+  description: "Based on the given readme file and parameter information, determine whether the code for the given task can be written."
+  parameters:
+    type: "object"
+    properties:
+      flag:
+        type: "string"
+        description: "Evaluate if the provided information can generate the code needed for the task. Response 'CODE'.If the given information does not write out code, return 'No'eg:CODE.eg:No"
+      finally_code:
+        type: "string"
+        description: "When 'CODE' is returned, the content of the generated code is returned.Please write your generated code here."
+    required: ["flag","finally_code"]

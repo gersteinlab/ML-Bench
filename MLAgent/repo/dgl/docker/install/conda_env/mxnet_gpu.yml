@@ -1,0 +1,22 @@
+name: mxnet-ci
+dependencies:
+  - python=3.7.0
+  - pip
+  - pip:
+    - mxnet-cu101==1.7.0
+    - pytest
+    - nose
+    - numpy
+    - cython==0.29
+    - scipy
+    - networkx
+    - matplotlib
+    - nltk
+    - requests[security]
+    - tqdm
+    - psutil
+    - pyyaml
+    - pydantic
+    - pandas
+    - rdflib
+    - ogb

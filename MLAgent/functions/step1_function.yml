@@ -1,0 +1,15 @@
+function_prompt: |
+  Please help me extract the key words in this sentence about the model used and the task I want to do.
+  --- Current Sentence  ---
+  sentence :{}
+
+function:
+  name: "Extracting_keywords"
+  description: "Extract keywords about the model used and the task I want to do from the given sentence."
+  parameters:
+    type: "object"
+    properties:
+      keywords:
+        type: "string"
+        description: "The keywords about the model used and the task I want to do extracted from the given sentence"
+    required: [" keywords"]

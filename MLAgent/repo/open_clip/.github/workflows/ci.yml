@@ -1,0 +1,143 @@
+name: Continuous integration
+
+on:
+  push:
+    branches:
+    - main 
+    paths-ignore:
+    - '**.md'
+    - 'CITATION.cff'
+    - 'LICENSE'
+    - '.gitignore'
+    - 'docs/**'
+  pull_request:
+    branches:
+    - main 
+    paths-ignore:
+    - '**.md'
+    - 'CITATION.cff'
+    - 'LICENSE'
+    - '.gitignore'
+    - 'docs/**'
+  workflow_dispatch:
+    inputs:
+      manual_revision_reference:
+        required: false
+        type: string
+      manual_revision_test:
+        required: false
+        type: string
+
+env:
+  REVISION_REFERENCE: v2.8.2
+  #9d31b2ec4df6d8228f370ff20c8267ec6ba39383 earliest compatible v2.7.0 + pretrained_hf param
+
+jobs:
+  Tests:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ] #, macos-latest ]
+        python: [ 3.8 ]
+        job_num: [ 4 ]
+        job: [ 1, 2, 3, 4 ]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        ref: ${{ inputs.manual_revision_test }}
+    - name: Set up Python ${{ matrix.python }}
+      id: pythonsetup
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python }}
+    - name: Venv cache
+      id: venv-cache
+      uses: actions/cache@v3
+      with:
+        path: .env
+        key: venv-${{ matrix.os }}-${{ steps.pythonsetup.outputs.python-version }}-${{ hashFiles('requirements*') }}
+    - name: Pytest durations cache
+      uses: actions/cache@v3
+      with:
+        path: .test_durations
+        key: test_durations-${{ matrix.os }}-${{ steps.pythonsetup.outputs.python-version }}-${{ matrix.job }}-${{ github.run_id }}
+        restore-keys: test_durations-0-
+    - name: Setup
+      if: steps.venv-cache.outputs.cache-hit != 'true'
+      run: |
+        python3 -m venv .env
+        source .env/bin/activate
+        make install
+        make install-test
+        make install-training
+    - name: Prepare test data
+      run: |
+        source .env/bin/activate
+        python -m pytest \
+          --quiet --co \
+          --splitting-algorithm least_duration \
+          --splits ${{ matrix.job_num }} \
+          --group ${{ matrix.job }} \
+          -m regression_test \
+          tests \
+          | head -n -2 | grep -Po 'test_inference_with_data\[\K[^]]*(?=-False]|-True])' \
+          > models_gh_runner.txt
+        if [ -n "${{ inputs.manual_revision_reference }}" ]; then
+          REVISION_REFERENCE=${{ inputs.manual_revision_reference }}
+        fi
+        python tests/util_test.py \
+          --save_model_list models_gh_runner.txt \
+          --model_list models_gh_runner.txt \
+          --git_revision $REVISION_REFERENCE
+    - name: Unit tests
+      run: |
+        source .env/bin/activate
+        if [[ -f .test_durations ]]
+        then
+          cp .test_durations durations_1
+          mv .test_durations durations_2
+        fi
+        python -m pytest \
+          -x -s -v \
+          --splitting-algorithm least_duration \
+          --splits ${{ matrix.job_num }} \
+          --group ${{ matrix.job }} \
+          --store-durations \
+          --durations-path durations_1 \
+          --clean-durations \
+          -m "not regression_test" \
+          tests
+        OPEN_CLIP_TEST_REG_MODELS=models_gh_runner.txt python -m pytest \
+          -x -s -v \
+          --store-durations \
+          --durations-path durations_2 \
+          --clean-durations \
+          -m "regression_test" \
+          tests
+        jq -s -S 'add' durations_* > .test_durations
+    - name: Collect pytest durations
+      uses: actions/upload-artifact@v3
+      with:
+        name: pytest_durations_${{ matrix.os }}-${{ matrix.python }}-${{ matrix.job }}
+        path: .test_durations
+
+  Collect:
+    needs: Tests
+    runs-on: ubuntu-latest
+    steps:
+    - name: Cache
+      uses: actions/cache@v3
+      with:
+        path: .test_durations
+        key: test_durations-0-${{ github.run_id }}
+    - name: Collect
+      uses: actions/download-artifact@v3
+      with:
+        path: artifacts
+    - name: Consolidate
+      run: |
+        jq -n -S \
+          'reduce (inputs | to_entries[]) as {$key, $value} ({}; .[$key] += $value)' \
+          artifacts/pytest_durations_*/.test_durations > .test_durations
+

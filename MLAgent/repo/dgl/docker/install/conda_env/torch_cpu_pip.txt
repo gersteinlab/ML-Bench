@@ -1,0 +1,24 @@
+--find-links https://download.pytorch.org/whl/torch_stable.html
+cython
+filelock
+matplotlib
+networkx
+nltk
+nose
+numpy
+ogb
+pandas
+psutil
+pyarrow
+pydantic
+pytest
+pyyaml
+rdflib
+requests[security]==2.28
+scikit-learn
+scipy
+torch==1.13.0+cpu
+torchdata
+torcheval
+torchmetrics
+tqdm

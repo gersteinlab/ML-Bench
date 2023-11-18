@@ -1,0 +1,19 @@
+api_base: https://gersteinbiocodeeval-eastus2.openai.azure.com/
+api_proxy: http://127.0.0.1:7890
+api_type: azure
+api_version: 2023-07-01-preview
+openai_keys:
+  gpt-35-turbo:
+    - api_key: xxxxxx
+      model: gpt-35
+  gpt-35-turbo-16k:
+    - api_key: xxxxxx
+      model: gpt-35-turbo-16k
+  gpt-4:
+    - api_key: xxxxxxx
+      model: gpt-4
+  gpt-4-32k:
+    - api_key: xxxxxx
+      model: gpt-4-32k
+
+#上传代码前记得模糊掉

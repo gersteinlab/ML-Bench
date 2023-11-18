@@ -1,0 +1,23 @@
+api_base: https://api.openai.com/v1
+api_proxy: http://127.0.0.1:7890
+openai_keys:
+  gpt-3.5-turbo:
+    - api_key: sk-xxxxx
+      model: gpt-3.5
+  gpt-3.5-turbo-0613:
+    - api_key: sk-xxxxx
+      model: gpt-3.5-turbo-0613
+  gpt-3.5-turbo-16k:
+    - api_key: sk-xxxxx
+      model: gpt-3.5-turbo-16k
+  gpt-4:
+    - api_key: sk-xxxxx
+      model: gpt-4
+  gpt-4-32k:
+    - api_key: sk-xxxxx
+      model: gpt-4-32k
+  claude-2:
+    - api_key: sk-xxxxx
+      model: claude-2
+ 
+#上传代码前记得模糊掉
