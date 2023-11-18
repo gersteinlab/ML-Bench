@@ -67,6 +67,7 @@ for repo_url in ranked_array:
     write_indexfile(repo_name,path)
     indexfile_name = repo_name+"_index.txt"
     readme_files = find_readme_files(repo_name)
+    print(readme_files)
     main_readme_path = readme_files[0]
     with open (main_readme_path,'r') as file:
         main_readmefile = file.read()
@@ -88,6 +89,7 @@ for repo_url in ranked_array:
     elif task_flag == "Yes":
         #step_4
         for ranked_readmefile in ranked_readmefiles:
+            ranked_readmefile = repo_name+"/"+ranked_readmefile
             step4_function_prompt,step4_function = read_yaml_file("functions/step4_function.yml")
             with open (ranked_readmefile,'r') as file:
                 readmefile = file.read()
@@ -97,6 +99,7 @@ for repo_url in ranked_array:
             step4_response = call_GPT(function_prompt = step4_function_prompt ,model_name = model_name,function_type =function_type ,function = step4_function)
             function_call_message = step4_response["choices"][0]["message"]["function_call"]
             function_call_json = json.loads(json.dumps(function_call_message.to_dict()))
+            print(function_call_json)
             flag = json.loads(function_call_json["arguments"])["flag"]
             if flag == "No":
                 continue
@@ -108,18 +111,19 @@ for repo_url in ranked_array:
                 call_path = json.loads(function_call_json["arguments"])["file_path"]
                 path = repo_name+"/"+call_path
                 with open (path,"r") as file:
-                    py_file = file.write()
+                    py_file = file.read()
                 args_function_prompt,args_function = read_yaml_file("functions/args_function.yml")
                 args_function_prompt = args_function_prompt.format(py_file)
                 args_response = call_GPT(function_prompt = args_function_prompt ,model_name = model_name ,function_type = function_type,function = args_function)
                 function_call_message = args_response["choices"][0]["message"]["function_call"]
                 function_call_json = json.loads(json.dumps(function_call_message.to_dict()))
                 args_code = json.loads(function_call_json["arguments"])["args_code"]
-                code_function_prompt,code_function = read_yaml_file("functions/args_function.yml")
-                code_function_prompt = code_function_prompt.format(anked_readmefile,args_code,query)
+                code_function_prompt,code_function = read_yaml_file("functions/code_function.yml")
+                code_function_prompt = code_function_prompt.format(ranked_readmefile,args_code,query)
                 code_response = call_GPT(function_prompt = code_function_prompt ,model_name = model_name,function_type = function_type,function = code_function)
                 function_call_message = code_response["choices"][0]["message"]["function_call"]
                 function_call_json = json.loads(json.dumps(function_call_message.to_dict()))
+                print(function_call_json)
                 flag_finally =  json.loads(function_call_json["arguments"])["flag"]
                 if flag_finally == "CODE":
                     finally_code = json.loads(function_call_json["arguments"])["finally_code"]

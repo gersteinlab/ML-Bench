@@ -15,5 +15,5 @@ function:
         description: "The given information serves as an indicator of whether the task can be completed. If it can be completed, return 'Yes'; if it cannot be completed, return 'No'.eg:No.eg:Yes."
       ranked_readmefiles:
         type: "string"
-        description: "Sorted list of readme files based on their helpfulness in completing the task.Remember that the result must be a list!eg:repo_name/README.md,repo_name/examples/README.md,repo_name/scripts/atlas/README.md"
+        description: "Sorted list of readme files based on their helpfulness in completing the task.Remember that the result must be a list!eg:repo/esm/README.md,repo/esm/examples/README.md,repo/esm/scripts/atlas/README.md"
     required: ["task_flag","ranked_readmefiles"]

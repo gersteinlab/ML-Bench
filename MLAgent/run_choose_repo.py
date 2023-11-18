@@ -52,7 +52,7 @@ elif api_type == "azure":
 
 path = "repo/"+repo_name
 #step_3 ranking_readmefiles
-step3_function_prompt,step3_function = read_yaml_file("functions/step3_function.yml")
+step3_function_prompt,step3_function = read_yaml_file("functions/step3_function_repo.yml")
 write_indexfile(repo_name,path)
 indexfile_name = repo_name+"_index.txt"
 readme_files = find_readme_files(path)
@@ -116,7 +116,7 @@ elif task_flag == "Yes":
             continue
         if flag == "CODE":
             code = function_args["code"]
-            with open("test_v4.8.jsonl","a") as file:
+            with open("test_v4.jsonl","a") as file:
                 data = {
                     "id":id,
                     "github_id":github_id,
@@ -171,7 +171,7 @@ elif task_flag == "Yes":
             if flag_finally == "CODE":
                 finally_code = function_args["finally_code"]
                 print(finally_code)
-                with open("test_v4.8.jsonl","a") as file:
+                with open("test_v4.jsonl","a") as file:
                     data = {
                         "id":id,
                         "github_id":github_id,
@@ -183,7 +183,7 @@ elif task_flag == "Yes":
                 break
             if flag_finally =="No":
                 continue
-    with open("test_v4.8_pass1.jsonl","a") as file:
+    with open("test_v4_error.jsonl","a") as file:
         data = {
                 "id":id,
                 "github_id":github_id,

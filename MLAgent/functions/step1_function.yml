@@ -2,7 +2,6 @@ function_prompt: |
   Please help me extract the key words in this sentence about the model used and the task I want to do.
   --- Current Sentence  ---
   sentence :{}
-
 function:
   name: "Extracting_keywords"
   description: "Extract keywords about the model used and the task I want to do from the given sentence."

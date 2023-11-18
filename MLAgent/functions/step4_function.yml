@@ -1,5 +1,5 @@
 function_prompt: |
-  I will provide you with a github readme file and directory index, please determine if this information is enough to write the code for the task I gave you. Write the code directly if you can, give us the path to the py file you want from the repository index file if you need more information.Please make sure that the file path you return is in the repository index file!!!And return NO if you don't think all of this information will do the job.
+  I will provide you with a github readme file and directory index, please determine if this information is enough to write the code or script for the task I gave you. Write the code or script directly if you can, give us the path to the py file you want from the repository index file if you need more information.Please make sure that the file path you return is in the repository index file!!!And return NO if you don't think all of this information will do the job.
   repository_index_file:{}
   readmefile:{}
   task:{}

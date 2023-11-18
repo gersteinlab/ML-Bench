@@ -1,4 +1,4 @@
-api_base: https://api.openai.com/v1
+api_base: https://api.openai-proxy.org/v1
 api_proxy: http://127.0.0.1:7890
 openai_keys:
   gpt-3.5-turbo:
