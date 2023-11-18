@@ -16,6 +16,3 @@ openai_keys:
   gpt-4-32k:
     - api_key: sk-xxxxx
       model: gpt-4-32k
-  claude-2:
-    - api_key: sk-xxxxx
-      model: claude-2
