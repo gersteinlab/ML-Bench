@@ -19,5 +19,3 @@ openai_keys:
   claude-2:
     - api_key: sk-xxxxx
       model: claude-2
- 
-#上传代码前记得模糊掉
