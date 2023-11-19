@@ -45,7 +45,6 @@ def tokenize_dialog(dialog, tokenizer):
 
 
 def get_custom_dataset(dataset_config, tokenizer, split):
-    print(dataset_config.data_path)
     dataset = datasets.load_from_disk(dataset_config.data_path)
     
     if dataset_config.task == 1:
