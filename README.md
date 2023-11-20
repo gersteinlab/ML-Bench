@@ -1,7 +1,7 @@
 # ML-Bench: Large Language Models Leverage Open-source Libraries for Machine Learning Tasks
 
 <p align="center">
-   📖 <a href="https://arxiv.org/abs/2311.09835" target="_blank"><big>Paper</big></a>  • 🚀 <a href="https://ml-bench.github.io/" target="_blank">Github Page</a>  • 📊 <a href="https://drive.google.com/drive/folders/1e86FhLjxXK837SgR8a29cztx9UfxPQzS" target="_blank">Data</a> 
+   📖 <a href="https://arxiv.org/abs/2311.09835" target="_blank">Paper</a>  • 🚀 <a href="https://ml-bench.github.io/" target="_blank">Github Page</a>  • 📊 <a href="https://drive.google.com/drive/folders/1e86FhLjxXK837SgR8a29cztx9UfxPQzS" target="_blank">Data</a> 
 </p>
 
 ![Alt text](https://github.com/gersteinlab/ML-Bench/blob/master/assets/image.png)
@@ -53,7 +53,7 @@ Run `python script/tools/bm25.py` to generate BM25 results for the instructions 
 Run `python script/tools/crawl.py` to fetch readme files from a specific GitHub repository. You'll need to modify the `url` within the code to retrieve the desired readme files.
 
 ## Cite Us
-This project is inspired by some related projects. We would like to thank the authors for their contributions. If you find this project useful, please cite the following papers:
+This project is inspired by some related projects. We would like to thank the authors for their contributions. If you find this project or dataset useful, please cite it:
 
 ```
 @article{liu2023mlbench,
