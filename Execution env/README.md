@@ -2,7 +2,7 @@ You can evaluate your own model by downloading the following docker
 
 https://ml-bench-docker.s3.amazonaws.com/ml-bench-docker/ml_bench.tar
 
-by running
+then run
 
 `docker load -i ml_bench.tar`
 
