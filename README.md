@@ -6,7 +6,11 @@
 
 ![Alt text](https://github.com/gersteinlab/ML-Bench/blob/master/assets/image.png)
 
+## Execution Env and data
 
+We have annotated the ML-Bench with new data, filtered and modified it, and we will subsequently update it with the new execution environment and data. 
+
+The execution environment in old version (same version as arxiv paper 2311) can be found in ./Execution env, for data in old version please refer to https://drive.google.com/drive/folders/1e86FhLjxXK837SgR8a29cztx9UfxPQzS?usp=drive_link .
 
 ## GPT Calling
 
