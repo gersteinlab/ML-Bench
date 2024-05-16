@@ -16,7 +16,7 @@ parsing_file=""$model"_"$type".jsonl"
 # readme: The entire text of the readme in the repository where the task is located
 readme_type="readme"
 
-instructions="extend_instructions"
+instructions="instruction"
 
 # choose from gpt-35-turbo-16k and gpt-4-32
 engine_name="gpt-4-32k"
