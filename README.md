@@ -68,3 +68,8 @@ This project is inspired by some related projects. We would like to thank the au
 }
 ```
 
+## 📜 License
+
+Distributed under the MIT License. See [`LICENSE`](./LICENSE) for more information.
+
+
