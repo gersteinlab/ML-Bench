@@ -6,11 +6,17 @@
 
 ![Alt text](https://github.com/gersteinlab/ML-Bench/blob/master/assets/image.png)
 
+
+## Docker Setup
+
+Please refer to [envs](envs/README.md) for details.
+
 ## OpenAI Calling
 
 Please refer to [openai](script/openai/README.md) for details.
 
 ## Open Source Model Fine-tuning
+
 Please refer to [finetune](script/finetune/README.md) for details.
 
 ## Tools
