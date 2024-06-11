@@ -8,34 +8,7 @@
 
 ## OpenAI Calling
 
-You can use the following script to reproduce OpenAI's performance on this task：
-```python
-bash script/openai/run.sh
-```
-
-You need to change parameter settings in `script/openai/run.sh` :
-
-* `type`: Choose from quarter or full.
-
-* `model`: Model name 
-
-* `input_file`: File path of dataset
-
-* `answer_file`: Original answer json format from GPT.
-
-* `parsing_file`: Post-process the output of GPT in jsonl format to obtain executable code segments.
-
-* `readme_type`: Choose from oracle_segment and readme
-
-  *# `oracle_segment`: The code paragraph in the readme that is most relevant to the task*
-
-  *# `readme`: The entire text of the readme in the repository where the task is located*
-
-* `engine_name`: Choose from gpt-35-turbo-16k and gpt-4-32.
-
-* `n_turn`: GPT returns the number of executable codes (5 times in the paper experiment).
-
-* `openai_key`: Your key.
+Please refer to [openai](script/openai/README.md) for details.
 
 ## Open Source Model Fine-tuning
 Please refer to [finetune](script/finetune/README.md) for details.
