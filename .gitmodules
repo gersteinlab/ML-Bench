@@ -4,3 +4,6 @@
 [submodule "repos/dgl"]
 	path = repos/dgl
 	url = https://github.com/dmlc/dgl.git
+[submodule "repos/bert"]
+	path = repos/bert
+	url = https://github.com/google-research/bert.git
