@@ -1,6 +1,3 @@
-[submodule "evaluation/OpenDevin"]
-	path = evaluation/OpenDevin
-	url = https://github.com/OpenDevin/OpenDevin.git
 [submodule "evaluation/open_devin"]
 	path = evaluation/open_devin
 	url = https://github.com/OpenDevin/OpenDevin.git
