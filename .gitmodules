@@ -1,1 +1,3 @@
-
+[submodule "dgl"]
+  path = repo/dgl
+  url = https://github.com/dmlc/dgl.git
