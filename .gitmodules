@@ -1,3 +1,6 @@
 [submodule "dgl"]
   path = repos/dgl
   url = https://github.com/dmlc/dgl.git
+[submodule "repos/dgl"]
+	path = repos/dgl
+	url = https://github.com/dmlc/dgl.git
