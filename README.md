@@ -10,7 +10,7 @@
 
 You can use the following script to reproduce OpenAI's performance on this task：
 ```python
-sh script/openai/run.sh
+bash script/openai/run.sh
 ```
 
 You need to change parameter settings in `script/openai/run.sh` :
