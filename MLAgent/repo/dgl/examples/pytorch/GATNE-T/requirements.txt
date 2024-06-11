@@ -1,7 +1,0 @@
-tqdm
-numpy
-scikit-learn
-networkx
-gensim
-requests
---pre dgl-cu101

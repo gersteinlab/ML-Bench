@@ -1,2 +1,0 @@
-https://dl.fbaipublicfiles.com/esmatlas/v2023_02/full/tarballs/tm_.90_1_plddt_.70_.80_00.tar.gz
-https://dl.fbaipublicfiles.com/esmatlas/v2023_02/full/tarballs/tm_.90_1_plddt_.70_.80_01.tar.gz

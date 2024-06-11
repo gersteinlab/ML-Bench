@@ -1,3 +1,0 @@
-https://dl.fbaipublicfiles.com/esmatlas/v2023_02/full/tarballs/tm_.50_.60_plddt_.50_.60_00.tar.gz
-https://dl.fbaipublicfiles.com/esmatlas/v2023_02/full/tarballs/tm_.50_.60_plddt_.50_.60_01.tar.gz
-https://dl.fbaipublicfiles.com/esmatlas/v2023_02/full/tarballs/tm_.50_.60_plddt_.50_.60_02.tar.gz
