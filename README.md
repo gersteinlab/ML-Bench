@@ -43,7 +43,7 @@
 
    After clone submodules, you can run 
 
-   `cd repos`
+   `cd utils`
 
    `bash crawl_raw_repo_and_merge_benchmark.sh` to generate full and quarter benchmark into `merged_full_benchmark.jsonl` and `merged_quarter_benchmark.jsonl`
 
