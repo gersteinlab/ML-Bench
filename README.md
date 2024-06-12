@@ -152,18 +152,18 @@ Please refer to [envs](envs/README.md) for details.
 
 ## 🛠️ Utils for Data Curations
 
-### Get BM25 result
+1. **Get BM25 result**
 
 Run `python utils/bm25.py` to generate BM25 results for the instructions and readme. Ensure to update the original dataset `path` and output `path` which includes the BM25 results.
 
-### Crawl README files from github repository
+2. **Crawl README files from github repository**
 
 Run `python utils/crawl.py` to fetch readme files from a specific GitHub repository. You'll need to modify the `url` within the code to retrieve the desired readme files.
 
-### Crawl raw repositories
+3. **Crawl raw repositories**
 Run `bash utils/crawl_raw_repo.sh` to clone repositories and write repositories to txts.
 
-### Calculate number of tokens
+4. **Calculate number of tokens**
 Run `bash utils/calculate_num_tokens.sh` to calculate the number of tokens statistics in the dataset.
 
 ## 📝 Cite Us
