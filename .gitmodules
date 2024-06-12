@@ -40,3 +40,7 @@
 [submodule "repos/pytorch-image-models"]
 	path = repos/pytorch-image-models
 	url = https://github.com/huggingface/pytorch-image-models.git
+[submodule "evaluation/open_devin"]
+	path = evaluation/open_devin
+	url = https://github.com/OpenDevin/OpenDevin.git
+

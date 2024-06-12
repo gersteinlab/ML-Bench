@@ -1,4 +1,4 @@
-# CodeLlama-7b Fine-tuning
+# Open Source Model Fine-tuning
 
 ## Prerequisites
 Llama-recipes provides a pip distribution for easy install and usage in other projects. Alternatively, it can be installed from source.

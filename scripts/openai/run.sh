@@ -23,7 +23,7 @@ engine_name="gpt-4-32k"
 
 n_turn=1
 
-python query_gpt.py \
+python call_openai.py \
  --readme_type ${readme_type} \
  --instruction ${instructions} \
  --nturn ${n_turn} \
