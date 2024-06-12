@@ -24,6 +24,6 @@ The dataset contains the following columns:
 If you want to run ML-LLM-Bench, you need to do post-processing on the dataset. You can use the following code to post-process the dataset:
 
 ```bash
-bash scripts/postprocess/prepare.sh
+bash scripts/post_process/prepare.sh
 ```
 
