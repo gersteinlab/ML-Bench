@@ -34,8 +34,6 @@ To reproduce OpenAI's performance on this task, use the following script:
 bash script/openai/run.sh
 ```
 
-#### Parameter Settings
-
 You need to change the parameter settings in `script/openai/run.sh`:
 
 - `type`: Choose from `quarter` or `full`.
@@ -57,11 +55,11 @@ Please refer to [openai](scripts/openai/README.md) for details.
 #### Prerequisites
 Llama-recipes provides a pip distribution for easy installation and usage in other projects. Alternatively, it can be installed from the source.
 
-##### Install with pip
+1. **Install with pip**
 ```
 pip install --extra-index-url https://download.pytorch.org/whl/test/cu118 llama-recipes
 ```
-##### Install from source
+2. **Install from source**
 To install from source e.g. for development use this command. We're using hatchling as our build backend which requires an up-to-date pip as well as setuptools package.
 ```
 git clone https://github.com/facebookresearch/llama-recipes
