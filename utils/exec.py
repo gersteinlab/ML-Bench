@@ -32,20 +32,20 @@ ID2CONDA = {
         }
 
 ID2PATH = {
-        1: "dgl", 
-        2: "bert", 
-        3: "lavis", 
-        4: "if", 
-        5: "vid2vid",
-        6: "esm", 
-        7: "open_clip", 
-        8: "Time-Series-Library", 
-        9: "External-Attention-pytorch", 
-        10: "PyTorch-GAN",
-        11: "pytorch-image-models", 
-        13: "learning3d", 
-        14: "muzic", 
-        15: "Grounded-Segment-Anything" }
+        1: "../repos/dgl", 
+        2: "../repos/bert", 
+        3: "../repos/lavis", 
+        4: "../repos/if", 
+        5: "../repos/vid2vid",
+        6: "../repos/esm", 
+        7: "../repos/open_clip", 
+        8: "../repos/Time-Series-Library", 
+        9: "../repos/External-Attention-pytorch", 
+        10: "../repos/PyTorch-GAN",
+        11: "../repos/pytorch-image-models", 
+        13: "../repos/learning3d", 
+        14: "../repos/muzic", 
+        15: "../repos/Grounded-Segment-Anything" }
 def kill_process_tree(pid):
     try:
         parent = psutil.Process(pid)
