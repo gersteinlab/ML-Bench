@@ -7,20 +7,21 @@
 ![Alt text](https://github.com/gersteinlab/ML-Bench/blob/master/assets/distribution.png)
 
 ## Table of Contents
-- 📋 [Prerequisites](#📋-prerequisites)
-- 📊 [Data Preparation] (#📊-data-preparation)
-- 🦙 [ML-LLM-Bench](#🦙-ml-llm-bench)
-  - 🌍 [Environment Setup](#🌍-environment-setup)
-  - 📞 [API Calling](#📞-api-calling)
-  - 🔧 [Open Source Model Fine-tuning](#🔧-open-source-model-fine-tuning)
-    - 📋 [Prerequisites](#📋-prerequisites-1)
-    - 🏋️ [Fine-tuning](#🏋️-fine-tuning)
-    - 🔍 [Inference](#🔍-inference)
-- 🤖 [ML-Agent-Bench](#🤖-ml-agent-bench)
-  - 🌍 [Environment Setup](#🌍-environment-setup-1)
-- 🛠️ [Utils for Data Curations](#🛠️-utils-for-data-curations)
-- 📝 [Cite Us](#📝-cite-us)
-- 📜 [License](#📜-license)
+- 📋 [Prerequisites](#📋prerequisites)
+- 📊 [Data Preparation](#📊data-preparation)
+- 🦙 [ML-LLM-Bench](#🦙ml-llm-bench)
+  - 🌍 [Environment Setup](#🌍environment-setup)
+  - 🛠️ [Usage](#️🛠️usage)
+  - 📞 [API Calling](#📞api-calling)
+  - 🔧 [Open Source Model Fine-tuning](#🔧open-source-model-fine-tuning)
+    - 📋 [Prerequisites](#📋prerequisites-1)
+    - 🏋️ [Fine-tuning](#🏋️fine-tuning)
+    - 🔍 [Inference](#🔍inference)
+- 🤖 [ML-Agent-Bench](#🤖ml-agent-bench)
+  - 🌍 [Environment Setup](#🌍environment-setup-1)
+- 🛠️ [Utils for Data Curations](#🛠️utils-for-data-curations)
+- 📝 [Cite Us](#📝cite-us)
+- 📜 [License](#📜license)
 
 
 ## 📋 Prerequisites
@@ -120,7 +121,6 @@ See [post_process](scripts/post_process/README.md) for more details.
       The `temp.py` file is not for users, it is used to store the code written by models.
       
       Additionally, the execution process may generate new unnecessary files.
-
 
 
 ### 📞 API Calling
