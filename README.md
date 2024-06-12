@@ -15,22 +15,22 @@
 ![Alt text](https://github.com/gersteinlab/ML-Bench/blob/master/assets/distribution.png)
 
 ## Table of Contents
-- [Prerequisites](#prerequisites)
-- [ML-LLM-Bench](#ml-llm-bench)
-  - [Environment Setup](#environment-setup)
-  - [API Calling](#api-calling)
-  - [Open Source Model Fine-tuning](#open-source-model-fine-tuning)
-    - [Prerequisites](#prerequisites-1)
-    - [Fine-tuning](#fine-tuning)
-    - [Inference](#inference)
-- [ML-Agent-Bench](#ml-agent-bench)
-  - [Environment Setup](#environment-setup-1)
-- [Utils for Data Curations](#utils-for-data-curations)
-- [Cite Us](#cite-us)
-- [License](#license)
+- 📋 [Prerequisites](#📋-prerequisites)
+- 🦙 [ML-LLM-Bench](#🦙-ml-llm-bench)
+  - 🌍 [Environment Setup](#🌍-environment-setup)
+  - 📞 [API Calling](#📞-api-calling)
+  - 🔧 [Open Source Model Fine-tuning](#🔧-open-source-model-fine-tuning)
+    - 📋 [Prerequisites](#📋-prerequisites-1)
+    - 🏋️ [Fine-tuning](#🏋️-fine-tuning)
+    - 🔍 [Inference](#🔍-inference)
+- 🤖 [ML-Agent-Bench](#🤖-ml-agent-bench)
+  - 🌍 [Environment Setup](#🌍-environment-setup-1)
+- 🛠️ [Utils for Data Curations](#🛠️-utils-for-data-curations)
+- 📝 [Cite Us](#📝-cite-us)
+- 📜 [License](#📜-license)
 
 
-## Prerequisites
+## 📋 Prerequisites
 
   To clone this repository with all its submodules, use the `--recurse-submodules` flag:
 
@@ -45,12 +45,12 @@
   git submodule update --init --recursive
   ```
 
-## ML-LLM-Bench
-### Environment Setup
+## 🦙 ML-LLM-Bench
+### 🌍 Environment Setup
 
 Placeholder
 
-### API Calling
+### 📞 API Calling
 
 To reproduce OpenAI's performance on this task, use the following script:
 ```bash
@@ -73,9 +73,9 @@ You need to change the parameter settings in `script/openai/run.sh`:
 
 Please refer to [openai](scripts/openai/README.md) for details.
 
-### Open Source Model Fine-tuning
+### 🔧 Open Source Model Fine-tuning
 
-#### Prerequisites
+#### 📋 Prerequisites
 Llama-recipes provides a pip distribution for easy installation and usage in other projects. Alternatively, it can be installed from the source.
 
 1. **Install with pip**
@@ -91,7 +91,7 @@ pip install -U pip setuptools
 pip install --extra-index-url https://download.pytorch.org/whl/test/cu118 -e .
 ```
 
-#### Fine-tuning
+#### 🏋️ Fine-tuning
 By definition, we have three tasks in the paper.
 * Task 1: Given a task description + Code, generate a code snippet.
 * Task 2: Given a task description + Retrieval, generate a code snippet.
@@ -116,7 +116,7 @@ You need to change the parameter settings of `OUTPUT_PATH`, `TASK`, and `DATA_PA
 * `TASK`: Choose from `1`, `2` and `3`.
 * `DATA_PATH`: The directory of the dataset.
 
-#### Inference
+#### 🔍 Inference
 You can use the following script to reproduce CodeLlama-7b's inference performance on this task：
 ```bash
 python chat_completion.py \
@@ -133,8 +133,8 @@ You need to change the parameter settings of `PEFT_MODEL`, `PROMPT_FILE`, and `T
 
 Please refer to [finetune](scripts/finetune/README.md) for details.
 
-## ML-Agent-Bench
-### Environment Setup
+## 🤖 ML-Agent-Bench
+### 🌍 Environment Setup
 
 To run the ML-Agent-Bench Docker container, you can use the following command:
 
@@ -150,7 +150,7 @@ For ML-Agent-Bench in OpenDevin, please refer to the [OpenDevin setup guide](htt
 Please refer to [envs](envs/README.md) for details.
 
 
-## Utils for Data Curations
+## 🛠️ Utils for Data Curations
 
 ### Get BM25 result
 
@@ -166,7 +166,7 @@ Run `bash utils/crawl_raw_repo.sh` to clone repositories and write repositories 
 ### Calculate number of tokens
 Run `bash utils/calculate_num_tokens.sh` to calculate the number of tokens statistics in the dataset.
 
-## Cite Us
+## 📝 Cite Us
 This project is inspired by some related projects. We would like to thank the authors for their contributions. If you find this project or dataset useful, please cite it:
 
 ```
