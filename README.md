@@ -6,16 +6,105 @@
 
 ![Alt text](https://github.com/gersteinlab/ML-Bench/blob/master/assets/distribution.png)
 
+## Environment Setup
 
-## Docker Setup
+### ML-Agent-Bench Docker Setup
+
+To run the ML-Agent-Bench Docker container, you can use the following command:
+
+```bash
+docker pull public.ecr.aws/i5g0m1f6/ml-bench
+docker run -it public.ecr.aws/i5g0m1f6/ml-bench /bin/bash
+```
+
+This will pull the latest ML-Agent-Bench Docker image and run it in an interactive shell. The container includes all the necessary dependencies to run the ML-Agent-Bench codebase.
+
+For ML-Agent-Bench in OpenDevin, please refer to the [OpenDevin setup guide](https://github.com/OpenDevin/OpenDevin/blob/main/evaluation/ml_bench/README.md).
 
 Please refer to [envs](envs/README.md) for details.
 
 ## OpenAI Calling
 
+To reproduce OpenAI's performance on this task, use the following script:
+```bash
+bash script/openai/run.sh
+```
+
+### Parameter Settings
+
+You need to change the parameter settings in `script/openai/run.sh`:
+
+- `type`: Choose from `quarter` or `full`.
+- `model`: Model name.
+- `input_file`: File path of the dataset.
+- `answer_file`: Original answer in JSON format from GPT.
+- `parsing_file`: Post-process the output of GPT in JSONL format to obtain executable code segments.
+- `readme_type`: Choose from `oracle_segment` and `readme`.
+  - `oracle_segment`: The code paragraph in the README that is most relevant to the task.
+  - `readme`: The entire text of the README in the repository where the task is located.
+- `engine_name`: Choose from `gpt-35-turbo-16k` and `gpt-4-32`.
+- `n_turn`: Number of executable codes GPT returns (5 times in the paper experiment).
+- `openai_key`: Your OpenAI API key.
+
 Please refer to [openai](scripts/openai/README.md) for details.
 
 ## Open Source Model Fine-tuning
+
+### Prerequisites
+Llama-recipes provides a pip distribution for easy installation and usage in other projects. Alternatively, it can be installed from the source.
+
+#### Install with pip
+```
+pip install --extra-index-url https://download.pytorch.org/whl/test/cu118 llama-recipes
+```
+#### Install from source
+To install from source e.g. for development use this command. We're using hatchling as our build backend which requires an up-to-date pip as well as setuptools package.
+```
+git clone https://github.com/facebookresearch/llama-recipes
+cd llama-recipes
+pip install -U pip setuptools
+pip install --extra-index-url https://download.pytorch.org/whl/test/cu118 -e .
+```
+
+### Fine-tuning
+By definition, we have three tasks in the paper.
+* Task 1: Given a task description + Raw README, generate a code snippet.
+* Task 2: Given a task description + BM25 Search, generate a code snippet.
+* Task 3: Given a task description + Oracle Search, generate a code snippet.
+
+You can use the following script to reproduce CodeLlama-7b's fine-tuning performance on this task：
+```bash
+torchrun --nproc_per_node 2 finetuning.py \
+    --use_peft \
+    --peft_method lora \
+    --enable_fsdp \
+    --model_name codellama/CodeLlama-7b-Instruct-hf \
+    --context_length 8192 \
+    --dataset mlbench_dataset \
+    --output_dir OUTPUT_PATH \
+    --task TASK \
+    --data_path DATA_PATH \
+```
+
+You need to change the parameter settings of `OUTPUT_PATH`, `TASK`, and `DATA_PATH` correspondingly.
+* `OUTPUT_DIR`: The directory to save the model.
+* `TASK`: Choose from `1`, `2` and `3`.
+* `DATA_PATH`: The directory of the dataset.
+
+### Inference
+You can use the following script to reproduce CodeLlama-7b's inference performance on this task：
+```bash
+python chat_completion.py \
+    --model_name 'codellama/CodeLlama-7b-Instruct-hf' \
+    --peft_model PEFT_MODEL \
+    --prompt_file PROMPT_FILE \
+    --task TASK \
+```
+
+You need to change the parameter settings of `PEFT_MODEL`, `PROMPT_FILE`, and `TASK` correspondingly.
+* `PEFT_MODEL`: The path of the PEFT model.
+* `PROMPT_FILE`: The path of the prompt file.
+* `TASK`: Choose from `1`, `2` and `3`.
 
 Please refer to [finetune](scripts/finetune/README.md) for details.
 
