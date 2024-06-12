@@ -8,6 +8,7 @@
 
 ## Table of Contents
 - 📋 [Prerequisites](#📋-prerequisites)
+- 📊 [Data Preparation] (#📊-data-preparation)
 - 🦙 [ML-LLM-Bench](#🦙-ml-llm-bench)
   - 🌍 [Environment Setup](#🌍-environment-setup)
   - 📞 [API Calling](#📞-api-calling)
@@ -42,7 +43,7 @@
   pip install -r requeirments.txt
   ```
 
-## Data Preparation
+## 📊 Data Preparation
 
 You can load the dataset using the following code:
 
@@ -220,8 +221,6 @@ This will pull the latest ML-Agent-Bench Docker image and run it in an interacti
 For ML-Agent-Bench in OpenDevin, please refer to the [OpenDevin setup guide](https://github.com/OpenDevin/OpenDevin/blob/main/evaluation/ml_bench/README.md).
 
 Please refer to [envs](envs/README.md) for details.
-
-
 
 
 ## 📝 Cite Us
