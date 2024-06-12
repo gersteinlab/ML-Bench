@@ -18,9 +18,9 @@ pip install --extra-index-url https://download.pytorch.org/whl/test/cu118 -e .
 
 ## Fine-tuning
 By definition, we have three tasks in the paper.
-* Task 1: Given a task description + Raw README, generate a code snippet.
-* Task 2: Given a task description + BM25 Search, generate a code snippet.
-* Task 3: Given a task description + Oracle Search, generate a code snippet.
+* Task 1: Given a task description + Code, generate a code snippet.
+* Task 2: Given a task description + Retrieval, generate a code snippet.
+* Task 3: Given a task description + Oracle, generate a code snippet.
 
 You can use the following script to reproduce CodeLlama-7b's fine-tuning performance on this task：
 ```bash
