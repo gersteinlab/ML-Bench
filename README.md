@@ -6,31 +6,19 @@
 
 ![Alt text](https://github.com/gersteinlab/ML-Bench/blob/master/assets/distribution.png)
 
-## Environment Setup
+## ML-LLM-Bench
+### Environment Setup
 
-### ML-Agent-Bench Docker Setup
+Placeholder
 
-To run the ML-Agent-Bench Docker container, you can use the following command:
-
-```bash
-docker pull public.ecr.aws/i5g0m1f6/ml-bench
-docker run -it public.ecr.aws/i5g0m1f6/ml-bench /bin/bash
-```
-
-This will pull the latest ML-Agent-Bench Docker image and run it in an interactive shell. The container includes all the necessary dependencies to run the ML-Agent-Bench codebase.
-
-For ML-Agent-Bench in OpenDevin, please refer to the [OpenDevin setup guide](https://github.com/OpenDevin/OpenDevin/blob/main/evaluation/ml_bench/README.md).
-
-Please refer to [envs](envs/README.md) for details.
-
-## OpenAI Calling
+### API Calling
 
 To reproduce OpenAI's performance on this task, use the following script:
 ```bash
 bash script/openai/run.sh
 ```
 
-### Parameter Settings
+#### Parameter Settings
 
 You need to change the parameter settings in `script/openai/run.sh`:
 
@@ -48,16 +36,16 @@ You need to change the parameter settings in `script/openai/run.sh`:
 
 Please refer to [openai](scripts/openai/README.md) for details.
 
-## Open Source Model Fine-tuning
+### Open Source Model Fine-tuning
 
-### Prerequisites
+#### Prerequisites
 Llama-recipes provides a pip distribution for easy installation and usage in other projects. Alternatively, it can be installed from the source.
 
-#### Install with pip
+##### Install with pip
 ```
 pip install --extra-index-url https://download.pytorch.org/whl/test/cu118 llama-recipes
 ```
-#### Install from source
+##### Install from source
 To install from source e.g. for development use this command. We're using hatchling as our build backend which requires an up-to-date pip as well as setuptools package.
 ```
 git clone https://github.com/facebookresearch/llama-recipes
@@ -66,7 +54,7 @@ pip install -U pip setuptools
 pip install --extra-index-url https://download.pytorch.org/whl/test/cu118 -e .
 ```
 
-### Fine-tuning
+#### Fine-tuning
 By definition, we have three tasks in the paper.
 * Task 1: Given a task description + Code, generate a code snippet.
 * Task 2: Given a task description + Retrieval, generate a code snippet.
@@ -91,7 +79,7 @@ You need to change the parameter settings of `OUTPUT_PATH`, `TASK`, and `DATA_PA
 * `TASK`: Choose from `1`, `2` and `3`.
 * `DATA_PATH`: The directory of the dataset.
 
-### Inference
+#### Inference
 You can use the following script to reproduce CodeLlama-7b's inference performance on this task：
 ```bash
 python chat_completion.py \
@@ -108,6 +96,23 @@ You need to change the parameter settings of `PEFT_MODEL`, `PROMPT_FILE`, and `T
 
 Please refer to [finetune](scripts/finetune/README.md) for details.
 
+## ML-Agent-Bench
+### Environment Setup
+
+To run the ML-Agent-Bench Docker container, you can use the following command:
+
+```bash
+docker pull public.ecr.aws/i5g0m1f6/ml-bench
+docker run -it public.ecr.aws/i5g0m1f6/ml-bench /bin/bash
+```
+
+This will pull the latest ML-Agent-Bench Docker image and run it in an interactive shell. The container includes all the necessary dependencies to run the ML-Agent-Bench codebase.
+
+For ML-Agent-Bench in OpenDevin, please refer to the [OpenDevin setup guide](https://github.com/OpenDevin/OpenDevin/blob/main/evaluation/ml_bench/README.md).
+
+Please refer to [envs](envs/README.md) for details.
+
+
 ## Tools
 
 ### Get BM25 result
@@ -117,6 +122,12 @@ Run `python utils/bm25.py` to generate BM25 results for the instructions and rea
 ### Crawl README files from github repository
 
 Run `python utils/crawl.py` to fetch readme files from a specific GitHub repository. You'll need to modify the `url` within the code to retrieve the desired readme files.
+
+### Crawl raw repositories
+Run `bash utils/crawl_raw_repo.sh` to clone repositories and write repositories to txts.
+
+### Calculate number of tokens
+Run `bash utils/calculate_num_tokens.sh` to calculate the number of tokens statistics in the dataset.
 
 ## Cite Us
 This project is inspired by some related projects. We would like to thank the authors for their contributions. If you find this project or dataset useful, please cite it:

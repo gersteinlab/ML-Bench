@@ -11,13 +11,6 @@ def clone_repo(repo_url, clone_dir):
         shutil.rmtree(clone_dir)
     subprocess.run(['git', 'clone', repo_url, clone_dir], check=True)
 
-# def get_all_commits(clone_dir):
-#     """
-#     Get all commit hashes in the repository.
-#     """
-#     result = subprocess.run(['git', 'log', '--pretty=format:%H'], capture_output=True, text=True, cwd=clone_dir, check=True)
-#     commits = result.stdout.splitlines()
-#     return commits
 
 def checkout_commit(clone_dir, commit):
     """
@@ -27,6 +20,7 @@ def checkout_commit(clone_dir, commit):
         subprocess.run(['git', 'checkout', commit], cwd=clone_dir, check=True)
     except subprocess.CalledProcessError as e:
         print(f"Error checking out commit {commit}: {e}")
+
 
 def read_files_in_dir(directory):
     """
@@ -51,6 +45,7 @@ def read_files_in_dir(directory):
 
     all_files_content = readme_files_content + other_files_content
     return all_files_content
+
 
 def main(repo_url, clone_dir, output_file, commit):
     clone_repo(repo_url, clone_dir)
