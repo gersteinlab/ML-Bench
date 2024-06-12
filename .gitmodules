@@ -1,3 +1,46 @@
+[submodule "repos/dgl"]
+	path = repos/dgl
+	url = https://github.com/dmlc/dgl.git
+[submodule "repos/bert"]
+	path = repos/bert
+	url = https://github.com/google-research/bert.git
+[submodule "repos/if"]
+	path = repos/if
+	url = https://github.com/deep-floyd/IF.git
+[submodule "repos/pyGAN"]
+	path = repos/PyTorch-GAN
+	url = https://github.com/eriklindernoren/PyTorch-GAN.git
+[submodule "repos/lavis"]
+	path = repos/lavis
+	url = https://github.com/salesforce/LAVIS.git
+[submodule "repos/ESM"]
+	path = repos/esm
+	url = https://github.com/facebookresearch/esm.git
+[submodule "repos/EAP"]
+	path = repos/External-Attention-pytorch
+	url = https://github.com/xmu-xiaoma666/External-Attention-pytorch.git
+[submodule "repos/TSL"]
+	path = repos/Time-Series-Library
+	url = https://github.com/thuml/Time-Series-Library.git
+[submodule "repos/vid2vid"]
+	path = repos/vid2vid
+	url = https://github.com/NVIDIA/vid2vid.git
+[submodule "repos/Learning3d"]
+	path = repos/learning3d
+	url = https://github.com/vinits5/learning3d.git
+[submodule "repos/mizic"]
+	path = repos/muzic
+	url = https://github.com/microsoft/muzic.git
+[submodule "repos/GSA"]
+	path = repos/Grounded-Segment-Anything
+	url = https://github.com/IDEA-Research/Grounded-Segment-Anything.git
+[submodule "repos/open_clip"]
+	path = repos/open_clip
+	url = https://github.com/mlfoundations/open_clip.git
+[submodule "repos/pytorch-image-models"]
+	path = repos/pytorch-image-models
+	url = https://github.com/huggingface/pytorch-image-models.git
 [submodule "evaluation/open_devin"]
 	path = evaluation/open_devin
 	url = https://github.com/OpenDevin/OpenDevin.git
+
