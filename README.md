@@ -6,14 +6,6 @@
 
 ![Alt text](https://github.com/gersteinlab/ML-Bench/blob/master/assets/distribution.png)
 
-# ML-Bench: Large Language Models Leverage Open-source Libraries for Machine Learning Tasks
-
-<p align="center">
-   📖 <a href="https://arxiv.org/abs/2311.09835" target="_blank">Paper</a>  • 🚀 <a href="https://ml-bench.github.io/" target="_blank">Github Page</a>  • 📊 <a href="https://huggingface.co/datasets/super-dainiu/ml-bench" target="_blank">Data</a> 
-</p>
-
-![Alt text](https://github.com/gersteinlab/ML-Bench/blob/master/assets/distribution.png)
-
 ## Table of Contents
 - 📋 [Prerequisites](#📋-prerequisites)
 - 🦙 [ML-LLM-Bench](#🦙-ml-llm-bench)
