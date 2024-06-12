@@ -161,3 +161,4 @@ cython_debug/
 
 # Log files
 logs/
+cache/

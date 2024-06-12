@@ -55,3 +55,5 @@ You need to change parameter settings of `PEFT_MODEL`, `PROMPT_FILE` and `TASK` 
 * `PEFT_MODEL`: The path of the PEFT model.
 * `PROMPT_FILE`: The path of the prompt file.
 * `TASK`: Choose from `1`, `2` and `3`.
+
+You can also refer to `vllm/generate.sh` to optimize the throughput and memory usage of the model.
