@@ -13,11 +13,11 @@ Please refer to [envs](envs/README.md) for details.
 
 ## OpenAI Calling
 
-Please refer to [openai](script/openai/README.md) for details.
+Please refer to [openai](scripts/openai/README.md) for details.
 
 ## Open Source Model Fine-tuning
 
-Please refer to [finetune](script/finetune/README.md) for details.
+Please refer to [finetune](scripts/finetune/README.md) for details.
 
 ## Tools
 
