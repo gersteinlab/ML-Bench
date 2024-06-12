@@ -49,7 +49,17 @@
 
 ### 🌍 Environment Setup
 
-Placeholder
+
+   To run the ML-LLM-Bench Docker container, you can use the following command:
+   
+   ```bash
+   docker pull public.ecr.aws/i5g0m1f6/ml-bench
+   docker run -it -v ML_Bench:/deep_data public.ecr.aws/i5g0m1f6/ml-bench /bin/bash
+   ```
+
+   
+   
+
 
 ### 📞 API Calling
 
