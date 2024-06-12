@@ -37,6 +37,8 @@
   git submodule update --init --recursive
   ```
 
+  Then run `pip install -r requeirments.txt`
+
 ## 🦙 ML-LLM-Bench
 
 ### 📋 Prerequisites
