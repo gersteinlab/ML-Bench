@@ -9,8 +9,6 @@
 
 ## Prerequisites
 
-1. **Clone the Repository**
-
   To clone this repository with all its submodules, use the `--recurse-submodules` flag:
 
   ```bash
