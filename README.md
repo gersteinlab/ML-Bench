@@ -154,17 +154,19 @@ Please refer to [envs](envs/README.md) for details.
 
 1. **Get BM25 result**
 
-Run `python utils/bm25.py` to generate BM25 results for the instructions and readme. Ensure to update the original dataset `path` and output `path` which includes the BM25 results.
+  Run `python utils/bm25.py` to generate BM25 results for the instructions and readme. Ensure to update the original dataset `path` and output `path` which includes the BM25 results.
 
 2. **Crawl README files from github repository**
 
-Run `python utils/crawl.py` to fetch readme files from a specific GitHub repository. You'll need to modify the `url` within the code to retrieve the desired readme files.
+  Run `python utils/crawl.py` to fetch readme files from a specific GitHub repository. You'll need to modify the `url` within the code to retrieve the desired readme files.
 
 3. **Crawl raw repositories**
-Run `bash utils/crawl_raw_repo.sh` to clone repositories and write repositories to txts.
+
+  Run `bash utils/crawl_raw_repo.sh` to clone repositories and write repositories to txts.
 
 4. **Calculate number of tokens**
-Run `bash utils/calculate_num_tokens.sh` to calculate the number of tokens statistics in the dataset.
+
+  Run `bash utils/calculate_num_tokens.sh` to calculate the number of tokens statistics in the dataset.
 
 ## 📝 Cite Us
 This project is inspired by some related projects. We would like to thank the authors for their contributions. If you find this project or dataset useful, please cite it:
