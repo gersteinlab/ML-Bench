@@ -6,6 +6,24 @@
 
 ![Alt text](https://github.com/gersteinlab/ML-Bench/blob/master/assets/distribution.png)
 
+
+## Prerequisites
+
+1. **Clone the Repository**
+
+  To clone this repository with all its submodules, use the `--recurse-submodules` flag:
+
+  ```bash
+  git clone --recurse-submodules https://github.com/gersteinlab/ML-Bench.git
+  cd ML-Bench
+  ```
+
+  If you have already cloned the repository without the `--recurse-submodules` flag, you can run the following commands to fetch the submodules:
+
+  ```bash
+  git submodule update --init --recursive
+  ```
+
 ## ML-LLM-Bench
 ### Environment Setup
 
