@@ -59,8 +59,24 @@
    docker run -it -v ML_Bench:/deep_data public.ecr.aws/i5g0m1f6/ml-bench /bin/bash
    ```
 
+### 🛠️ Usage
+
+
+   Place your results in `utils/results` directory, and update the `--result_path` in `exec.sh` with your path. Also, modify the log address. 
+   
+   Then run `bash exec.sh`. And you can check the run logs in your log file, view the overall results in `eval_total_user.jsonl`, and see the results for each repository in `eval_result_user.jsonl`.
    
    
+   Both JSONL files starting with `eval_result` and `eval_total` contain partial execution results in our paper.
+   
+      The `utils/results` folder includes the model-generated outputs we used for testing.
+      
+      The `utils/exec_logs` folder saves our the execute log.
+      
+      The `temp.py` file is not for users, it is used to store the code written by models.
+      
+      Additionally, the execution process may generate new unnecessary files.
+
 
 
 ### 📞 API Calling
@@ -163,23 +179,7 @@ For ML-Agent-Bench in OpenDevin, please refer to the [OpenDevin setup guide](htt
 Please refer to [envs](envs/README.md) for details.
 
 
-## 🛠️ Utils for Data Curations
 
-1. **Get BM25 result**
-
-  Run `python utils/bm25.py` to generate BM25 results for the instructions and readme. Ensure to update the original dataset `path` and output `path` which includes the BM25 results.
-
-2. **Crawl README files from github repository**
-
-  Run `python utils/crawl.py` to fetch readme files from a specific GitHub repository. You'll need to modify the `url` within the code to retrieve the desired readme files.
-
-3. **Crawl raw repositories**
-
-  Run `bash utils/crawl_raw_repo.sh` to clone repositories and write repositories to txts.
-
-4. **Calculate number of tokens**
-
-  Run `bash utils/calculate_num_tokens.sh` to calculate the number of tokens statistics in the dataset.
 
 ## 📝 Cite Us
 This project is inspired by some related projects. We would like to thank the authors for their contributions. If you find this project or dataset useful, please cite it:
