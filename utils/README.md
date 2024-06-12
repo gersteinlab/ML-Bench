@@ -1,4 +1,4 @@
-# Tools
+## Utils for Data Curations
 
 ## Get BM25 result
 
@@ -12,4 +12,4 @@ Run `python utils/crawl.py` to fetch readme files from a specific GitHub reposit
 Run `bash utils/crawl_raw_repo.sh` to clone repositories and write repositories to txts.
 
 ## Calculate number of tokens
-Run `python utils/calculate_num_tokens.py` to calculate the number of tokens statistics in the dataset.
+Run `bash utils/calculate_num_tokens.sh` to calculate the number of tokens statistics in the dataset.
