@@ -59,6 +59,14 @@
    docker run -it -v ML_Bench:/deep_data public.ecr.aws/i5g0m1f6/ml-bench /bin/bash
    ```
 
+   To download model weights and prepare files, run
+   
+   'cd utils'
+   
+   'bash download_model_weight_pics.sh'
+   
+   It may take 2 hours to automatically prepare them.
+
 ### 🛠️ Usage
 
 
