@@ -88,7 +88,7 @@ See [post_process](scripts/post_process/README.md) for more details.
 
    You can change `readme_content = fr.read()` in `merge.py`, line 50 to `readme_content = fr.read()[:100000]` to get 32k length README contents or to `readme_content = fr.read()[:400000]` to get 128k length README contents.
    
-   Under the 128k setting, users can prepare trainset and testset in 10 mins with 10 workers.
+   Under the 128k setting, users can prepare trainset and testset in 10 mins with 10 workers. Without token limitation, users may need 2 hours to prepare the whole dataset and get a huge dataset.
 
 ### 🌍 Environment Setup
 
