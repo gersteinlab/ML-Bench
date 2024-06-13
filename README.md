@@ -82,9 +82,11 @@ See [post_process](scripts/post_process/README.md) for more details.
 
    After clone submodules, you can run 
 
-   `cd utils`
+   `cd scripts/post_process`
 
-   `bash crawl_raw_repo_and_merge_benchmark.sh` to generate full and quarter benchmark into `merged_full_benchmark.jsonl` and `merged_quarter_benchmark.jsonl`
+   `bash prepare.sh` to generate full and quarter benchmark into `merged_full_benchmark.jsonl` and `merged_quarter_benchmark.jsonl`
+
+   You can change `readme_content = fr.read()` in `merge.py`, line 50 to `readme_content = fr.read()[:100000]` to get 32k length README contents or to `readme_content = fr.read()[:400000]` to get 128k length README contents.
 
 ### 🌍 Environment Setup
 
