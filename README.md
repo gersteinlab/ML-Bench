@@ -237,7 +237,8 @@ This project is inspired by some related projects. We would like to thank the au
   author={Tang, Xiangru and Liu, Yuliang and Cai, Zefan and Shao, Yanjun and Lu, Junjie and Zhang, Yichi and Deng, Zexuan and Hu, Helan and Yang, Zengxian and An, Kaikai and others},
   journal={arXiv preprint arXiv:2311.09835},
   year={2023}
-}```
+}
+```
 
 ## 📜 License
 
