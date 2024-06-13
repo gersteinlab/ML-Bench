@@ -87,6 +87,8 @@ See [post_process](scripts/post_process/README.md) for more details.
    `bash prepare.sh` to generate full and quarter benchmark into `merged_full_benchmark.jsonl` and `merged_quarter_benchmark.jsonl`
 
    You can change `readme_content = fr.read()` in `merge.py`, line 50 to `readme_content = fr.read()[:100000]` to get 32k length README contents or to `readme_content = fr.read()[:400000]` to get 128k length README contents.
+   
+   Under the 128k setting, users can prepare trainset and testset in 10 mins with 10 workers.
 
 ### 🌍 Environment Setup
 
