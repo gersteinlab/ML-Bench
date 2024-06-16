@@ -1,4 +1,4 @@
-# ML-Bench: ML-Bench: Evaluating Large Language Models and Agents for Machine Learning Tasks on Repository-Level Code
+# ML-Bench: Evaluating Large Language Models and Agents for Machine Learning Tasks on Repository-Level Code
 
 
 <p align="center">
