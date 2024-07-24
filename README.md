@@ -232,7 +232,7 @@ Please refer to [envs](envs/README.md) for details.
 This project is inspired by some related projects. We would like to thank the authors for their contributions. If you find this project or dataset useful, please cite it:
 
 ```
-@misc{tang2024mlbench,
+@article{tang2024mlbench,
       title={ML-Bench: Evaluating Large Language Models and Agents for Machine Learning Tasks on Repository-Level Code}, 
       author={Xiangru Tang and Yuliang Liu and Zefan Cai and Yanjun Shao and Junjie Lu and Yichi Zhang and Zexuan Deng and Helan Hu and Kaikai An and Ruijun Huang and Shuzheng Si and Sheng Chen and Haozhe Zhao and Liang Chen and Yan Wang and Tianyu Liu and Zhiwei Jiang and Baobao Chang and Yin Fang and Yujia Qin and Wangchunshu Zhou and Yilun Zhao and Arman Cohan and Mark Gerstein},
       year={2024},
