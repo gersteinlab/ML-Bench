@@ -42,7 +42,7 @@
 
   Then run
   ```bash
-  pip install -r requeirments.txt
+  pip install -r requirements.txt
   ```
 
 ## 📊 Data Preparation
