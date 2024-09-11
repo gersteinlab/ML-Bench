@@ -8,21 +8,21 @@
 ![Alt text](https://github.com/gersteinlab/ML-Bench/blob/master/assets/distribution.png)
 
 ## Table of Contents
-- 📋 [Prerequisites](#📋prerequisites)
-- 📊 [Data Preparation](#📊data-preparation)
-- 🦙 [ML-LLM-Bench](#🦙ml-llm-bench)
-  - 🌍 [Environment Setup](#🌍environment-setup)
-  - 🛠️ [Usage](#️🛠️usage)
-  - 📞 [API Calling](#📞api-calling)
-  - 🔧 [Open Source Model Fine-tuning](#🔧open-source-model-fine-tuning)
-    - 📋 [Prerequisites](#📋prerequisites-1)
-    - 🏋️ [Fine-tuning](#🏋️fine-tuning)
-    - 🔍 [Inference](#🔍inference)
-- 🤖 [ML-Agent-Bench](#🤖ml-agent-bench)
-  - 🌍 [Environment Setup](#🌍environment-setup-1)
-- 🛠️ [Utils for Data Curations](#🛠️utils-for-data-curations)
-- 📝 [Cite Us](#📝cite-us)
-- 📜 [License](#📜license)
+- 📋 [Prerequisites](#-prerequisites)
+- 📊 [Data Preparation](#-data-preparation)
+- 🦙 [ML-LLM-Bench](#-ml-llm-bench)
+  - 📋 [Prerequisites](#-prerequisites-1)
+  - 🌍 [Environment Setup](#-environment-setup)
+  - 🛠️ [Usage](#%EF%B8%8F-usage)
+  - 📞 [API Calling](#-api-calling)
+  - 🔧 [Open Source Model Fine-tuning](#-open-source-model-fine-tuning)
+    - 📋 [Prerequisites](#-prerequisites-2)
+    - 🏋️ [Fine-tuning](#%EF%B8%8F-fine-tuning)
+    - 🔍 [Inference](#-inference)
+- 🤖 [ML-Agent-Bench](#-ml-agent-bench)
+  - 🌍 [Environment Setup](#-environment-setup-1)
+- 📝 [Cite Us](#-cite-us)
+- 📜 [License](#-license)
 
 
 ## 📋 Prerequisites
@@ -42,7 +42,7 @@
 
   Then run
   ```bash
-  pip install -r requeirments.txt
+  pip install -r requirements.txt
   ```
 
 ## 📊 Data Preparation
