@@ -1,11 +1,6 @@
 # ML-Bench: Evaluating Large Language Models and Agents for Machine Learning Tasks on Repository-Level Code
 
-
-
-## 📖 <a href="https://arxiv.org/abs/2311.09835" target="_blank">Paper</a>  • 🚀 <a href="https://ml-bench.github.io/" target="_blank">Github Page</a>  • 📊 <a href="https://huggingface.co/datasets/super-dainiu/ml-bench" target="_blank">Data</a> 
-
-
-![Alt text](https://github.com/gersteinlab/ML-Bench/blob/master/assets/distribution.png)
+![Alt text](assets/distribution.png)
 
 ## Table of Contents
 - 📋 [Prerequisites](#-prerequisites)
@@ -226,21 +221,6 @@ This will pull the latest ML-Agent-Bench Docker image and run it in an interacti
 For ML-Agent-Bench in OpenDevin, please refer to the [OpenDevin setup guide](https://github.com/OpenDevin/OpenDevin/blob/main/evaluation/ml_bench/README.md).
 
 Please refer to [envs](envs/README.md) for details.
-
-
-## 📝 Cite Us
-This project is inspired by some related projects. We would like to thank the authors for their contributions. If you find this project or dataset useful, please cite it:
-
-```
-@article{tang2024mlbench,
-      title={ML-Bench: Evaluating Large Language Models and Agents for Machine Learning Tasks on Repository-Level Code}, 
-      author={Xiangru Tang and Yuliang Liu and Zefan Cai and Yanjun Shao and Junjie Lu and Yichi Zhang and Zexuan Deng and Helan Hu and Kaikai An and Ruijun Huang and Shuzheng Si and Sheng Chen and Haozhe Zhao and Liang Chen and Yan Wang and Tianyu Liu and Zhiwei Jiang and Baobao Chang and Yin Fang and Yujia Qin and Wangchunshu Zhou and Yilun Zhao and Arman Cohan and Mark Gerstein},
-      year={2024},
-      eprint={2311.09835},
-      archivePrefix={arXiv},
-      primaryClass={'cs.CL'}
-}
-```
 
 ## 📜 License
 
