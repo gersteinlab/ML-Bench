@@ -162,3 +162,13 @@ cython_debug/
 # Log files
 logs/
 cache/
+
+# Output
+output/
+
+# Jsonl and csv
+*.jsonl
+*.csv
+
+# DockerEnv
+.dockerenv
