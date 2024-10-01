@@ -142,7 +142,7 @@ async def main(
             dialogs_copy = dialogs.copy()
             dialogs_copy["output"] = output_texts
             result_dialogs = dialogs_copy[["github_id", "id", "output"]]
-            with open(f"output/{model.replace('/', '_')} - task{task}.jsonl", "w") as f:
+            with open(f"output/{model.replace('/', '_')}-task{task}.jsonl", "w") as f:
                 for _, row in result_dialogs.iterrows():
                     f.write(json.dumps(row.to_dict()) + "\n")
 

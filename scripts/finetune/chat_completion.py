@@ -182,7 +182,7 @@ def main(
 
     dialogs["output"] = output_texts
     dialogs = dialogs[["github_id", "id", "output"]]
-    with open(f"{peft_model} - task{task}.jsonl", "w") as f:
+    with open(f"output/{peft_model}-task{task}.jsonl", "w") as f:
         for _, row in dialogs.iterrows():
             f.write(json.dumps(row.to_dict()) + "\n")
 

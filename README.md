@@ -98,8 +98,7 @@ See [post_process](scripts/post_process/README.md) for more details.
    To download model weights and prepare files, you can use the following command:
 
    ```bash
-   cd utils
-   bash download_model_weight_pics.sh
+   bash utils/download_model_weight_pics.sh
    ```
 
    It may take 2 hours to automatically prepare them.
@@ -107,20 +106,20 @@ See [post_process](scripts/post_process/README.md) for more details.
 ### 🛠️ Usage
 
 
-   Place your results in `utils/results` directory, and update the `--result_path` in `exec.sh` with your path. Also, modify the log address. 
+   Place your results in `output/` directory, and update the `--input_path` in `exec.sh` with your path. Also, modify the log address. 
    
-   Then run `bash exec.sh`. And you can check the run logs in your log file, view the overall results in `eval_total_user.jsonl`, and see the results for each repository in `eval_result_user.jsonl`.
+   Then run `bash utils/exec.sh`. And you can check the run logs in your log file, view the overall results in `output/{{MODEL_NAME}}_{{TASK}}_results_{{TIMESTAMP}}.jsonl`, and see the results for each repository in `output/{{MODEL_NAME}}_{{TASK}}_results_{{TIMESTAMP}}.jsonl`.
    
    
    Both JSONL files starting with `eval_result` and `eval_total` contain partial execution results in our paper.
    
-      The `utils/results` folder includes the model-generated outputs we used for testing.
+  - The `output/` folder includes the model-generated outputs we used for testing.
       
-      The `utils/exec_logs` folder saves our the execute log.
+  - The `logs/` folder saves our the execute log.
       
-      The `temp.py` file is not for users, it is used to store the code written by models.
+  - The `utils/temp.py` file is not for users, it is used to store the code written by models.
       
-      Additionally, the execution process may generate new unnecessary files.
+  - Additionally, the execution process may generate new unnecessary files.
 
 
 ### 📞 API Calling
