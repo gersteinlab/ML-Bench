@@ -168,15 +168,20 @@ def align_results_with_dataset(input_path: str, dataset_path: str, split: str) -
     ground_truth_list = DatasetDict.load_from_disk(dataset_path)[split]
     
     result_list = []
+    seen_ids = set()
     for test_data in test_list:
-        for data in ground_truth_list:
-            if test_data['id'] == data['id'] and test_data['github_id'] == data['github_id']:
-                test_data.update({
-                    'path': data['path'],
-                    'arguments': data['arguments'],
-                    'type': data['type']
-                })
-                result_list.append(test_data)
+        id_key = (test_data['id'], test_data['github_id'])
+        if id_key not in seen_ids:
+            for data in ground_truth_list:
+                if test_data['id'] == data['id'] and test_data['github_id'] == data['github_id']:
+                    test_data.update({
+                        'path': data['path'],
+                        'arguments': data['arguments'],
+                        'type': data['type']
+                    })
+                    result_list.append(test_data)
+                    seen_ids.add(id_key)
+                    break
     return result_list
 
 def compute_repo_pass_rates(json_list: List[Dict[str, Any]]) -> Tuple[Dict[str, List[int]], Dict[str, int]]:
