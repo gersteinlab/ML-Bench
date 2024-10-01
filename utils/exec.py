@@ -8,6 +8,7 @@ import time
 import numpy as np
 import pdb
 from tqdm import tqdm
+import os
 from datasets import DatasetDict
 from typing import List, Dict, Tuple, Any, Optional
 
@@ -68,6 +69,7 @@ def filter_valid_data(ground_truth_data: List[Dict[str, Any]], error_path: str) 
         file.write(f"Error data counts is {error_count}\n")
         logging.info(f"Error data counts is {error_count}\n")
         json.dump(invalid_data, file)
+        file.write("\n")
     return valid_data
 
 def run_python_code(repo_output: str, id: int, github_id: int, path: str, conda_env: str) -> bool:
@@ -207,9 +209,17 @@ def main() -> None:
     dt_object = datetime.fromtimestamp(start_time)
     timestamp = dt_object.strftime("%Y%m%d_%H%M%S")
     
-    # Derive result_path from input_path
-    result_path = input_path.rsplit('.', 1)[0] + f"_results_{timestamp}.jsonl"
-    error_path = input_path.rsplit('.', 1)[0] + f"_error_{timestamp}.jsonl"
+    # Create output subdirectories in the same directory as input
+    input_dir = os.path.dirname(input_path)
+    input_filename = os.path.basename(input_path)
+    input_name = os.path.splitext(input_filename)[0]
+    
+    subdir = os.path.join(input_dir, f"{input_name}{timestamp}")
+    os.makedirs(subdir, exist_ok=True)
+    
+    # Derive result_path and error_path
+    result_path = os.path.join(subdir, f"result.jsonl")
+    error_path = os.path.join(subdir, f"error.jsonl")
     
     ground_truth_data = align_results_with_dataset(input_path, dataset_path, split)
     ground_truth_data = filter_valid_data(ground_truth_data, error_path)

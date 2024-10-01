@@ -42,9 +42,9 @@ def get_bm25_readme(query, readme, n_sentence=10, max_n_sentence=1000):
     return ' '.join(bm25.get_top_n(query.split(), docs, n=1)[0])
 
 
-def process_item(index, data_item, log_dir='../logs', n_sentence=10, max_n_sentence=1000):
+def process_item(index, data_item, cache_dir='../cache', n_sentence=10, max_n_sentence=1000):
     instruction = data_item['instruction']
-    readme = os.path.join(log_dir, f"{REPO_2_TXT[data_item['github']]}.txt")
+    readme = os.path.join(cache_dir, f"{REPO_2_TXT[data_item['github']]}.txt")
 
     with open(readme, 'r') as fr:
         readme_content = fr.read()
@@ -54,7 +54,7 @@ def process_item(index, data_item, log_dir='../logs', n_sentence=10, max_n_sente
     return data_item
 
 
-def main(splits, log_dir='../logs', cache_dir='../cache', max_workers=None, n_sentence=10, max_n_sentence=1000):
+def main(splits, cache_dir='../cache', max_workers=None, n_sentence=10, max_n_sentence=1000):
     os.makedirs(cache_dir, exist_ok=True)
     data = load_dataset('super-dainiu/ml-bench')
     print(f"Loaded dataset from super-dainiu/ml-bench.")
@@ -64,7 +64,7 @@ def main(splits, log_dir='../logs', cache_dir='../cache', max_workers=None, n_se
         results = []
 
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            futures = {executor.submit(process_item, i, data[split][i], log_dir): i for i in range(len(data[split]))}
+            futures = {executor.submit(process_item, i, data[split][i], cache_dir): i for i in range(len(data[split]))}
             for future in tqdm.tqdm(as_completed(futures), total=len(data[split]), desc=f"Processing {split}"):
                 result = future.result()
                 if result is not None:
@@ -81,9 +81,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process some integers.')
     parser.add_argument('--splits', type=str, nargs='+', default=['full', 'quarter'], help='Dataset splits to process')
     parser.add_argument('--max_workers', type=int, default=None, help='Maximum number of worker threads to use')
-    parser.add_argument('--log_dir', type=str, default='../logs', help='Directory to store log files')
     parser.add_argument('--cache_dir', type=str, default='../cache', help='Directory to store cache files')
     parser.add_argument('--n_sentence', type=int, default=10, help='Number of sentences to consider in the README')
     parser.add_argument('--max_n_sentence', type=int, default=1000, help='Maximum number of sentences to consider in the README')
     args = parser.parse_args()
-    main(splits=args.splits, log_dir=args.log_dir, cache_dir=args.cache_dir, max_workers=args.max_workers, n_sentence=args.n_sentence, max_n_sentence=args.max_n_sentence)
+    main(splits=args.splits, cache_dir=args.cache_dir, max_workers=args.max_workers, n_sentence=args.n_sentence, max_n_sentence=args.max_n_sentence)

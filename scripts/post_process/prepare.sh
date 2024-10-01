@@ -27,7 +27,7 @@ mkdir -p $CACHE_DIR
 for item in "${REPO_LIST[@]}"; do
     repo=$(echo $item | cut -d':' -f1)
     commit=$(echo $item | cut -d':' -f2)
-    python scripts/post_process/crawl_repos.py $REPO_DIR/$repo $LOG_DIR/$repo.txt $commit
+    python scripts/post_process/crawl_repos.py $REPO_DIR/$repo $CACHE_DIR/$repo.txt $commit
 done
 
-python scripts/post_process/merge.py --split full quarter --log_dir $LOG_DIR --cache_dir $CACHE_DIR --max_workers 40
+python scripts/post_process/merge.py --split full quarter --cache_dir $CACHE_DIR --max_workers 40
