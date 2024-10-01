@@ -118,7 +118,7 @@ async def main(
         raise ValueError("TOGETHER_API_KEY environment variable is not set")
     async_client = AsyncTogether(api_key=api_key)
 
-    for task in [2]:
+    for task in [3]:
         dialogs = read_dialogs_from_dataset(task, cache_dir)
 
         async def process_model(model):
@@ -142,7 +142,7 @@ async def main(
             dialogs_copy = dialogs.copy()
             dialogs_copy["output"] = output_texts
             result_dialogs = dialogs_copy[["github_id", "id", "output"]]
-            with open(f"{model.replace('/', '_')} - task{task}.jsonl", "w") as f:
+            with open(f"output/{model.replace('/', '_')} - task{task}.jsonl", "w") as f:
                 for _, row in result_dialogs.iterrows():
                     f.write(json.dumps(row.to_dict()) + "\n")
 
