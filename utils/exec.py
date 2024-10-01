@@ -113,7 +113,11 @@ def run_bash_script(repo_output: str, id: int, github_id: int, path: str, conda_
         terminate_process_tree(sub.pid)
         return True
 
-def validate_arguments(output: str, arguments: Dict[str, Any]) -> bool:
+def validate_arguments(output: str, arguments: Dict[str, Any] | str) -> bool:
+    if not isinstance(arguments, dict):
+        # Arguments is stored as a string
+        arguments = eval(arguments)
+
     for argument in arguments:
         if str(arguments[argument]).lower() not in output.lower():
             subprocess.run(['echo', "parameter wrong"])
