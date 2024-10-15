@@ -22,23 +22,24 @@
 
 ## 📋 Prerequisites
 
-  To clone this repository with all its submodules, use the `--recurse-submodules` flag:
+To clone this repository with all its submodules, use the `--recurse-submodules` flag:
 
-  ```bash
-  git clone --recurse-submodules https://github.com/gersteinlab/ML-Bench.git
-  cd ML-Bench
-  ```
+```bash
+git clone --recurse-submodules https://github.com/gersteinlab/ML-Bench.git
+cd ML-Bench
+```
 
-  If you have already cloned the repository without the `--recurse-submodules` flag, you can run the following commands to fetch the submodules:
+If you have already cloned the repository without the `--recurse-submodules` flag, you can run the following commands to fetch the submodules:
 
-  ```bash
-  git submodule update --init --recursive
-  ```
+```bash
+git submodule update --init --recursive
+```
 
-  Then run
-  ```bash
-  pip install -r requirements.txt
-  ```
+Download and install [Nix package manager](https://nixos.org/download/) and run:
+
+```
+nix develop -c $SHELL
+```
 
 ## 📊 Data Preparation
 

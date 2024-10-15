@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "ml-bench"
+version = "0.1.0"
+description = ""
+authors = ["Daniel Shao", "Yanjun Shao"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+rank-bm25 = "^0.2.2"
+nltk = "^3.9.1"
+datasets = "^3.0.1"
+huggingface = "^0.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
