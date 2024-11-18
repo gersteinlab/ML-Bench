@@ -1,4 +1,0 @@
-rank_bm25
-nltk
-datasets
-huggingface

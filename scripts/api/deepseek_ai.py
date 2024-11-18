@@ -7,8 +7,8 @@ import asyncio
 
 import pandas as pd
 from tqdm import tqdm
-import together
-from together import Together, AsyncTogether
+from openai import AsyncOpenAI
+import openai
 from datasets import load_dataset, Dataset, DatasetDict
 
 tqdm.pandas()
@@ -40,13 +40,18 @@ If you want to use the code segment and script in the following segment, you can
 In your answer, the script should be generated between ``` and ```. Don't generate multiple code blocks. Most answers can be directly found in the above segment. You might need to modify the code a little bit to make it work.
 """
 
-TOGETHER_MODELS = [
-    "Qwen/Qwen1.5-72B-Chat",
-    "Qwen/Qwen1.5-110B-Chat",
-    "Qwen/Qwen2-72B-Instruct",
-    "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
-    "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
-]
+TASK4_PROMPT = """Suppose you are a data scientist, you will read the following README file and write a script to do the task described by the user.
+You want to help me with this task:
+{}
+
+In your answer, the script should be generated between ``` and ```. Don't generate multiple code blocks. Most answers can be directly found in the above segment. You might need to modify the code a little bit to make it work.
+"""
+
+
+DEEPSEEK_MODELS = {
+    "deepseek/DeepSeek-Chat": "deepseek-chat",
+    "deepseek/DeepSeek-Coder": "deepseek-coder",
+}
 
 def read_dialogs_from_dataset(task, cache_dir="cache/ml-bench-merged"):
     dataset_dict = DatasetDict.load_from_disk(cache_dir)
@@ -65,6 +70,10 @@ def read_dialogs_from_dataset(task, cache_dir="cache/ml-bench-merged"):
         dialogs["prompt"] = dialogs.progress_apply(
             lambda x: [{'role': 'user', 'content': TASK3_PROMPT.format(x['instruction'], x['oracle'])}], axis=1
         )
+    elif task == 4:
+        dialogs["prompt"] = dialogs.progress_apply(
+            lambda x: [{'role': 'user', 'content': TASK4_PROMPT.format(x['instruction'])}], axis=1
+        )
     dialogs = dialogs[["github_id", "id", "prompt"]]
     return dialogs
 
@@ -77,25 +86,29 @@ def postprocess_output(output):
         code = ''
     return code
 
-async def generate_code_response(async_client, messages, model, num_repeat=5, max_tokens=64, temperature=1.0, top_p=1.0, top_k=50, **kwargs):
+async def generate_code_response(async_client, messages, model, endpoint, num_repeat=5, max_tokens=64, temperature=1.0, top_p=1.0, top_k=50, **kwargs):
     async def single_request():
         while True:
             try:
                 response = await async_client.chat.completions.create(
-                    model=model,
+                    model=endpoint,
                     messages=messages,
                     max_tokens=max_tokens,
                     temperature=temperature,
                     top_p=top_p,
-                    top_k=top_k,
+                    # top_k=top_k,
                     **kwargs
                 )
                 return response.choices[0].message.content
-            except together.error.ServiceUnavailableError:
-                print("Server overloaded, retrying...")
+            except openai.RateLimitError:
+                print(f"Rate limit exceeded for {endpoint}, retrying...")
                 await asyncio.sleep(1)  # Wait 1 second before retrying
-            except together.error.InvalidRequestError:
+            except openai.BadRequestError:
+                print(f"Invalid request for {endpoint}, retrying...")
                 return ""
+            except openai.NotFoundError:
+                print(f"Model not found for {endpoint}, retrying...")
+                await asyncio.sleep(1)  # Wait 1 second before retrying
             except Exception as e:
                 print(f"Error: {e}")
                 return ""
@@ -113,15 +126,15 @@ async def main(
     cache_dir: str="cache/ml-bench-merged", # The directory where the cached dataset is stored
     **kwargs
 ):
-    api_key = os.environ.get("TOGETHER_API_KEY")
+    api_key = os.environ.get("DEEPSEEK_API_KEY")
     if not api_key:
-        raise ValueError("TOGETHER_API_KEY environment variable is not set")
-    async_client = AsyncTogether(api_key=api_key)
+        raise ValueError("DEEPSEEK_API_KEY environment variable is not set")
+    async_client = AsyncOpenAI(api_key=api_key, base_url="https://api.deepseek.com/beta")
 
-    for task in [3]:
+    for task in [1,2,3]:
         dialogs = read_dialogs_from_dataset(task, cache_dir)
 
-        async def process_model(model):
+        async def process_model(model, endpoint):
             output_texts = []
             
             for messages in tqdm(dialogs["prompt"], desc=f"Processing {model}"):
@@ -129,6 +142,7 @@ async def main(
                     async_client,
                     messages,
                     model,
+                    endpoint,
                     num_repeat=num_repeat,
                     max_tokens=max_tokens,
                     temperature=temperature,
@@ -146,7 +160,7 @@ async def main(
                 for _, row in result_dialogs.iterrows():
                     f.write(json.dumps(row.to_dict()) + "\n")
 
-        await asyncio.gather(*[process_model(model) for model in TOGETHER_MODELS])
+        await asyncio.gather(*[process_model(model, endpoint) for model, endpoint in DEEPSEEK_MODELS.items()])
 
 if __name__ == "__main__":
     fire.Fire(lambda **kwargs: asyncio.run(main(**kwargs)))

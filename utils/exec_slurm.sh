@@ -6,11 +6,14 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=64G
 #SBATCH --partition=scavenge_gpu
-#SBATCH --gpus=rtx3090:1
+#SBATCH --gres=gpu:rtx3090:1
 #SBATCH --array=0-2
 
+# Load necessary modules
 module load GCC/12.2.0
 module load CUDA/12.1.1
+module load miniconda
+
 conda activate ml-bench
 
 models=(
