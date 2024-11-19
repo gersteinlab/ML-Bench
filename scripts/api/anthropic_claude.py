@@ -100,7 +100,8 @@ async def generate_code_response(client, messages, model, num_repeat=5, max_toke
             except Exception as e:
                 print(f"Error: {e}")
                 await asyncio.sleep(1)
-
+                return ""
+ 
 
     tasks = [single_request() for _ in range(num_repeat)]
     responses = await asyncio.gather(*tasks)
