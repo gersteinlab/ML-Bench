@@ -50,9 +50,10 @@ In your answer, the script should be generated between ``` and ```. Don't genera
 TOGETHER_MODELS = [
     # "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
     # "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
-    "Qwen/Qwen2.5-7B-Instruct-Turbo",
-    "Qwen/Qwen2.5-72B-Instruct-Turbo",
-    "Qwen/Qwen2.5-Coder-32B-Instruct"
+    "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
+    # "Qwen/Qwen2.5-7B-Instruct-Turbo",
+    # "Qwen/Qwen2.5-72B-Instruct-Turbo",
+    # "Qwen/Qwen2.5-Coder-32B-Instruct"
 ]
 
 def read_dialogs_from_dataset(task, cache_dir="cache/ml-bench-merged"):
@@ -105,8 +106,8 @@ async def generate_code_response(async_client, messages, model, num_repeat=5, ma
             except together.error.ServiceUnavailableError:
                 print("Server overloaded, retrying...")
                 await asyncio.sleep(1)  # Wait 1 second before retrying
-            except together.error.InvalidRequestError:
-                print(f"Invalid request for {model}, retrying...")
+            except together.error.InvalidRequestError as e:
+                print(f"Invalid request for {model} {e}, retrying...")
                 return ""
             except Exception as e:
                 print(f"Error: {e}")
@@ -130,7 +131,7 @@ async def main(
         raise ValueError("TOGETHER_API_KEY environment variable is not set")
     async_client = AsyncTogether(api_key=api_key)
 
-    for task in [3]:
+    for task in [1,2,3,4]:
         dialogs = read_dialogs_from_dataset(task, cache_dir)
 
         async def process_model(model):

@@ -131,7 +131,7 @@ async def main(
         raise ValueError("DEEPSEEK_API_KEY environment variable is not set")
     async_client = AsyncOpenAI(api_key=api_key, base_url="https://api.deepseek.com/beta")
 
-    for task in [1,2,3]:
+    for task in [1,2,3,4]:
         dialogs = read_dialogs_from_dataset(task, cache_dir)
 
         async def process_model(model, endpoint):

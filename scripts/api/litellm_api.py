@@ -7,8 +7,7 @@ import asyncio
 
 import pandas as pd
 from tqdm import tqdm
-from openai import AsyncOpenAI, AsyncAzureOpenAI
-import openai
+from litellm import acompletion
 from datasets import load_dataset, Dataset, DatasetDict
 
 tqdm.pandas()
@@ -48,9 +47,9 @@ In your answer, the script should be generated between ``` and ```. Don't genera
 """
 
 
-AZURE_MODELS = {
-    "OpenAI/GPT-4O": "gpt-4o",
-    "OpenAI/GPT-4O-Mini": "gpt-4o-mini",
+ANTHROPIC_MODELS = {
+    "anthropic/claude-3.5-sonnet": "anthropic/claude-3.5-sonnet",
+    "anthropic/claude-3.5-haiku": "anthropic/claude-3.5-haiku",
 }
 
 def read_dialogs_from_dataset(task, cache_dir="cache/ml-bench-merged"):
@@ -86,46 +85,45 @@ def postprocess_output(output):
         code = ''
     return code
 
-async def generate_code_response(async_client, messages, model, endpoint, num_repeat=5, max_tokens=64, temperature=1.0, **kwargs):
+async def generate_code_response(messages, model, endpoint, num_repeat=5, max_tokens=64, temperature=1.0, top_p=1.0, top_k=50, **kwargs):
     async def single_request():
         while True:
             try:
-                response = await async_client.chat.completions.create(
+                response = await acompletion(
                     model=endpoint,
                     messages=messages,
-                    max_tokens=max_tokens,
                     temperature=temperature,
-                    **kwargs
+                    top_p=top_p,
+                    api_base=os.environ.get("LITELLM_API_BASE"),
+                    api_key=os.environ.get("LITELLM_API_KEY"),
                 )
                 return response.choices[0].message.content
-            except openai.RateLimitError:
-                print(f"Rate limit exceeded for {endpoint}, retrying...")
-                await asyncio.sleep(1)  # Wait 1 second before retrying
-            except openai.BadRequestError:
-                print(f"Invalid request for {endpoint}, retrying...")
-                return ""
-
+            except Exception as e:
+                if "rate_limit" in str(e).lower():
+                    print(f"Rate limit exceeded for {endpoint}, retrying...")
+                    await asyncio.sleep(1)  # Wait 1 second before retrying
+                elif "not found" in str(e).lower():
+                    print(f"Model not found for {endpoint}, retrying...")
+                    await asyncio.sleep(1)  # Wait 1 second before retrying
+                else:
+                    print(f"Error: {e}")
+                    return ""
 
     tasks = [single_request() for _ in range(num_repeat)]
     responses = await asyncio.gather(*tasks)
     return responses
 
 async def main(
-    max_tokens = 4096, #The maximum numbers of tokens to generate
+    max_tokens = 8192, #The maximum numbers of tokens to generate
     num_repeat: int=5, #The number of samples for each input
     temperature: float=1.0, # [optional] The value used to modulate the next token probabilities.
+    top_p: float=1.0, # [optional] If set to float < 1, only the smallest set of most probable tokens with probabilities that add up to top_p or higher are kept for generation.
+    top_k: int=50, # [optional] The number of highest probability vocabulary tokens to keep for top-k-filtering.
     cache_dir: str="cache/ml-bench-merged", # The directory where the cached dataset is stored
     **kwargs
 ):
-    api_key = os.environ.get("AZURE_API_KEY")
-    api_base = os.environ.get("AZURE_API_BASE")
-    api_version = os.environ.get("AZURE_API_VERSION")
-    print(f"api_key: {api_key}, api_base: {api_base}, api_version: {api_version}")
-    if not api_key or not api_base or not api_version:
-        raise ValueError("AZURE_API_KEY or AZURE_API_BASE or AZURE_API_VERSION environment variable is not set")
-    async_client = AsyncAzureOpenAI(api_key=api_key, azure_endpoint=api_base, api_version=api_version)
 
-    for task in [2,3,4]:
+    for task in [1,2,3,4]:
         dialogs = read_dialogs_from_dataset(task, cache_dir)
 
         async def process_model(model, endpoint):
@@ -133,13 +131,14 @@ async def main(
             
             for messages in tqdm(dialogs["prompt"], desc=f"Processing {model}"):
                 output_text = await generate_code_response(
-                    async_client,
                     messages,
                     model,
                     endpoint,
                     num_repeat=num_repeat,
                     max_tokens=max_tokens,
                     temperature=temperature,
+                    top_p=top_p,
+                    top_k=top_k,
                     **kwargs
                 )
                 output_text = [postprocess_output(output) for output in output_text]
@@ -152,7 +151,7 @@ async def main(
                 for _, row in result_dialogs.iterrows():
                     f.write(json.dumps(row.to_dict()) + "\n")
 
-        await asyncio.gather(*[process_model(model, endpoint) for model, endpoint in AZURE_MODELS.items()])
+        await asyncio.gather(*[process_model(model, endpoint) for model, endpoint in ANTHROPIC_MODELS.items()])
 
 if __name__ == "__main__":
     fire.Fire(lambda **kwargs: asyncio.run(main(**kwargs)))
