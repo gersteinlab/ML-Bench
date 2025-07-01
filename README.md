@@ -221,6 +221,18 @@ For ML-Agent-Bench in OpenDevin, please refer to the [OpenDevin setup guide](htt
 
 Please refer to [envs](envs/README.md) for details.
 
+## Cite Us
+
+```
+@article{tang2023ml,
+  title={ML-Bench: Evaluating Large Language Models and Agents for Machine Learning Tasks on Repository-Level Code},
+  author={Tang, Xiangru and Liu, Yuliang and Cai, Zefan and Shao, Yanjun and Lu, Junjie and Zhang, Yichi and Deng, Zexuan and Hu, Helan and An, Kaikai and Huang, Ruijun and others},
+  journal={arXiv preprint arXiv:2311.09835},
+  year={2023}
+}
+```
+
+
 ## 📜 License
 
 Distributed under the MIT License. See [`LICENSE`](./LICENSE) for more information.
