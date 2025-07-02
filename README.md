@@ -1,4 +1,4 @@
-# ML-Bench: Evaluating Large Language Models and Agents for Machine Learning Tasks on Repository-Level Code
+# ML-Bench: BENCHMARKING LARGE LANGUAGE MODELS AND AGENTS FOR END-TO-END MACHINE LEARNING WORKFLOWS
 
 ![Alt text](assets/distribution.png)
 
